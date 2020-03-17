@@ -1,0 +1,13 @@
+{
+  "name": "bob-bot",
+  "version": "1.0.0",
+  "description": "Like J.A.R.V.I.S but for Smilingbob72 instead of Tony Stark. . . And in discord, instead of a flying metal battle suit.",
+  "main": "bot.js",
+  "author": "Smilingbob72",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "discord.js": "^12.0.2",
+    "node-fetch": "^2.6.0",
+    "winston": "^3.2.1"
+  }
+}
