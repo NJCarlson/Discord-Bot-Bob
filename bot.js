@@ -7,6 +7,11 @@ const client = new Discord.Client();
 const prefix = '!';
 const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
 
+let Ainsults = ['Titty', 'Ass', 'Nut', 'Jizz', 'Pop-Tart', 'Corona Virus', 'Fart Box', 'Testicle', 'Cunt', 'Smegma', 'Fart', 'Booger', 'Fecal', 'STD', 'Donkey Anus' ]; 
+let Binsults = ['Licking', 'Fingering', 'Sniffing', 'Tasting', 'Busting', 'Surfing', 'Grinding', 'Squeezing', 'Shrivelling', 'Breathing', 'Spooning', 'Potty-Mouthed' ];
+let Cinsults = ['Waffle Stomper', 'Butt-Muncher', 'Nipple-Blaster', 'Hobgoblin', 'Furry', 'Scum bag', 'Skeezer', 'Crab-infested Cooch', 'Pirate', 'Rat', 'Snitch', 'Troglodyte', 'Dweeb', 'Peasant', 'Bumpkin', 'Tickle-Monster', 'Know-It-All' ] 
+
+
 client.once('ready', () => {
 	console.log('Ready!');
 });
@@ -27,8 +32,6 @@ switch(command)
         message.channel.send(file);
     break;
     case 'urban':
-       
-
         if (!args.length) {
 			return message.channel.send('You need to supply a search term!');
 		}
@@ -52,9 +55,23 @@ switch(command)
 
 		message.channel.send(embed);
              
-    break;
-    
+	break;
+	case 'insult':
+		{
+		
+			 A = Ainsults[Math.floor(Math.random() * Ainsults.length)];
+			 B = Binsults[Math.floor(Math.random() * Binsults.length)];
+			 C = Cinsults[Math.floor(Math.random() * Cinsults.length)];
 
+			return message.channel.send(A + ' ' + B + ' ' + C);
+		}
+		break;
+	default :
+		{
+			return message.channel.send("Invalid command! For a list of valid commands, mail a self addressed stamped envelope to Tyler Booth");
+		}
+		break;
+    
 }
 	
 });
