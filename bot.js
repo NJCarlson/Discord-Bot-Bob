@@ -1,16 +1,16 @@
 //#region Discord JS
-const Discord  = require('discord.js');
+const Discord = require('discord.js');
 const fetch = require('node-fetch');
 const querystring = require('querystring');
 
 const client = new Discord.Client();
 const prefix = '!';
 const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
-const openweatherkey='6c06e49a121cab65326278fe2388227f';
+const openweatherkey = '6c06e49a121cab65326278fe2388227f';
 
-let Ainsults = ['Titty', 'Ass', 'Nut', 'Jizz', 'Pop-Tart', 'Corona Virus', 'Fart Box', 'Ball' ,'Testicle', 'Cunt', 'Smegma', 'Fart', 'Booger', 'Fecal', 'STD', 'Donkey Anus', 'Fat', 'Nipple', 'Disease' ];  //noun
-let Binsults = ['Licking', 'Fingering', 'Sniffing', 'Tasting', 'Busting', 'Surfing', 'Plague-ridden', 'Grinding', 'Squeezing', 'Shrivelling', 'Breathing', 'Spooning', 'Mouthed', 'Hugging', 'Stabbing','Assed', 'Gobbling', 'scruffy-looking', 'Snorting' ]; // ing or ed
-let Cinsults = ['Waffle Stomper', 'Butt-Muncher', ,'cum gutter', 'Blaster', 'Hobgoblin', 'Furry', 'Scum bag', 'Skeezer', 'Nerf-Herder', 'Crab-infested Cooch', 'Lint Licker' , 'Pirate', 'Rat', 'Snitch', 'Troglodyte', 'Dweeb', 'Peasant', 'Bumpkin', 'Weasel','Tickle-Monster', 'Know-It-All', 'Whore', 'Slime Ball', 'Creeper', 'Douche Bag' ] 
+let Ainsults = ['Titty', 'Ass', 'Nut', 'Jizz', 'Pop-Tart', 'Corona Virus', 'Fart Box', 'Ball', 'Testicle', 'Cunt', 'Smegma', 'Fart', 'Booger', 'Fecal', 'STD', 'Donkey Anus', 'Fat', 'Nipple', 'Disease'];  //noun
+let Binsults = ['Licking','Fucking', 'Fingering', 'Sniffing', 'Tasting', 'Busting', 'Surfing', 'Plague-ridden', 'Grinding', 'Squeezing', 'Shrivelling', 'Breathing', 'Spooning', 'Mouthed', 'Hugging', 'Stabbing', 'Assed', 'Gobbling', 'scruffy-looking', 'Snorting']; // ing or ed
+let Cinsults = ['Waffle Stomper', 'Fucker', 'Tickler', 'Butt-Muncher', , 'cum gutter', 'Blaster', 'Hobgoblin', 'Furry', 'Coward', 'Scum bag', 'Skeezer', 'Nerf-Herder', 'Crab-infested Cooch', 'Lint Licker', 'Pirate', 'Rat', 'Snitch', 'Troglodyte', 'Dweeb', 'Peasant', 'Bumpkin', 'Weasel', 'Tickle-Monster', 'Know-It-All', 'Whore', 'Slime Ball', 'Creeper', 'Douche Bag']
 
 
 client.once('ready', () => {
@@ -18,19 +18,18 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-		const args = message.content.slice(prefix.length).split(/ +/);
+	const args = message.content.slice(prefix.length).split(/ +/);
 
-	if (!message.content.startsWith(prefix) || (message.author.bot && !(args.join().includes('insult')) )) return;
+	if (!message.content.startsWith(prefix) || (message.author.bot && !(args.join().includes('insult')))) return;
 
 
-    const command = args.shift().toLowerCase();
+	const command = args.shift().toLowerCase();
 
-try {
-switch(command)
-{
-	 case 'help' :
-		{
-			help = `============================= BobBot Commands ====================================
+	try {
+		switch (command) {
+			case 'help':
+				{
+					help = `============================= BobBot Commands ====================================
 			!help - list of commands.
 			!ping  - Returns "Pong" message to verify BobBot is listening. 
 			!cat - BobBot finds you a picture of a cat from https://aws.random.cat/meow
@@ -40,121 +39,120 @@ switch(command)
 			!spam [message] - BobBot sends the message 5 times, can only send the !insult message, requires permission.
 			========= Thank you for using BobBot, made By Smilingbob72 =======================
 			`;
-			message.channel.send(help);
-		}
-	break;
-    case 'ping':
-        message.channel.send('Pong!');
-    break;
-    case 'cat':
-        const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
-        message.channel.send(file);
-    break;
-    case 'urban':
-        if (!args.length) {
-			return message.channel.send('You need to supply a search term!');
-		}
+					message.channel.send(help);
+				}
+				break;
+			case 'ping':
+				message.channel.send('Pong!');
+				break;
+			case 'cat':
+				const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
+				message.channel.send(file);
+				break;
+			case 'urban':
+				if (!args.length) {
+					return message.channel.send('You need to supply a search term!');
+				}
 
-        const query = querystring.stringify({ term: args.join(' ') });
+				const query = querystring.stringify({ term: args.join(' ') });
 
-		const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
+				const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
 
-		if (!list.length) {
-			return message.channel.send(`No results found for **${args.join(' ')}**.`);
-		}
+				if (!list.length) {
+					return message.channel.send(`No results found for **${args.join(' ')}**.`);
+				}
 
-		const [answer] = list;
-		const embed = new Discord.MessageEmbed()
-			.setColor('#EFFF00')
-			.setTitle(answer.word)
-			.setURL(answer.permalink)
-			.addField('Definition', trim(answer.definition, 1024))
-			.addField('Example', trim(answer.example, 1024))
-			.addField('Rating', `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.`);
-
-		message.channel.send(embed);
-             
-	break;
-	case 'insult':
-		{
-			insultee = args.join(" ");
-
-			 A = Ainsults[Math.floor(Math.random() * Ainsults.length)];
-			 B = Binsults[Math.floor(Math.random() * Binsults.length)];
-			 C = Cinsults[Math.floor(Math.random() * Cinsults.length)];
-
-			 if (!args.length) {
-				return message.channel.send(A + ' ' + B + ' ' + C);
-			}
-			else if (insultee.includes('and'))
-			{
-				return message.channel.send( insultee + ' are '+ A + ' ' + B + ' ' + C +'s');
-			}
-			else
-			{
-				return message.channel.send( insultee + ' is a '+ A + ' ' + B + ' ' + C);
-			}
-		
-		}
-		break;
-	case 'weather':
-		{
-			if (!args.length)
-			 {
-				return message.channel.send('Where? Try !weather [CITY NAME]');
-			 } 
-
-				search = args.join(" ");
-				url = 'https://api.openweathermap.org/data/2.5/weather?q='+ search+'&appid=' + openweatherkey;
-				const{obj} = await fetch(url).then(response => response.json());
-				const [weather] = obj.weather;
-				const [main] = obj.main;
-
+				const [answer] = list;
 				const embed = new Discord.MessageEmbed()
-				.setColor('#EFFF00')
-				.setTitle('Weather in ' + search + 'from Open Weather Map')
-				.setURL('https://api.openweathermap.org')
-				.addField('Weather', trim(weather.description, 1024))
-				.addField('Temp', trim(main.temp + ' Kelvin', 1024))
-				.addField('Feels like', trim(main.feels_like + ' Kelvin', 1024))
-		
-		message.channel.send(embed);
+					.setColor('#EFFF00')
+					.setTitle(answer.word)
+					.setURL(answer.permalink)
+					.addField('Definition', trim(answer.definition, 1024))
+					.addField('Example', trim(answer.example, 1024))
+					.addField('Rating', `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.`);
 
-		}
-		break;
-		case 'spam':
-		{
-			
-			spamMessage = args.join(" ");
+				message.channel.send(embed);
 
-			if (message.member.roles.cache.some(r => r.name === "The Bob") || message.member.roles.cache.some(r => r.name ==='Bob-Ombs') || message.member.displayName === "Smilingbob72"){
+				break;
+			case 'insult':
+				{
+					insultee = args.join(" ");
 
-				for (let index = 0; index < 5; index++) 
-					{
-						var sent = message.channel.send(spamMessage);
+					A = Ainsults[Math.floor(Math.random() * Ainsults.length)];
+					B = Binsults[Math.floor(Math.random() * Binsults.length)];
+					C = Cinsults[Math.floor(Math.random() * Cinsults.length)];
+
+					if (!args.length) {
+						return message.channel.send(A + ' ' + B + ' ' + C);
 					}
-			}
-			else
-			{
-				message.channel.send('Nice try.');
-			}
-			
-		
-		}
-		break;
-	default :
-		{
-			return message.channel.send("Invalid command! For a list of valid commands try !help ");
-		}
-		break;
-    
-}	
+					else if (insultee.includes('and')) {
+						return message.channel.send(insultee + ' are ' + A + ' ' + B + ' ' + C + 's');
+					}
+					else {
+						return message.channel.send(insultee + ' is a ' + A + ' ' + B + ' ' + C);
+					}
 
-} catch (error) 
-			{
-				message.channel.send('BobBot has encountered an error : ' + error);
-			}
-	
+				}
+				break;
+			case 'weather':
+				{
+					if (!args.length) {
+						return message.channel.send('Where? Try !weather [CITY NAME]');
+					}
+
+					search = args.join(" ");
+					url = 'https://api.openweathermap.org/data/2.5/weather?q=' + search + '&appid=' + openweatherkey;
+					var obj;
+					await fetch(url).then(response => obj = response.json());
+					var Report = ' Weather in ' + search + '\n'  +	
+					'Description : ' + obj.weather[0].main + '\n' +
+					'Temp : ' + obj.main.temp + 'Kelvin' + '\n' +
+					'Feels Like : ' +  obj.main.feels_like + 'Kelvin';
+
+					// const [data] = obj;
+					// const [weather] = data.weather;
+					// const embed = new Discord.MessageEmbed()
+					// 	.setColor('#EFFF00')
+					// 	.setTitle('Weather in ' + search + 'from Open Weather Map')
+					// 	.setURL('https://api.openweathermap.org')
+					// 	.addField('Weather', trim(weather.description, 1024))
+					// 	.addField('Temp', trim(main.temp + ' Kelvin', 1024))
+					// 	.addField('Feels like', trim(main.feels_like + ' Kelvin', 1024))
+
+					 message.channel.send(Report);
+
+				}
+				break;
+			case 'spam':
+				{
+
+					spamMessage = args.join(" ");
+
+					if (message.member.roles.cache.some(r => r.name === "The Bob") || message.member.roles.cache.some(r => r.name === 'Bob-Ombs') || message.member.displayName === "Smilingbob72") {
+
+						for (let index = 0; index < 5; index++) {
+							var sent = message.channel.send(spamMessage);
+						}
+					}
+					else {
+						message.channel.send('Nice try.');
+					}
+
+
+				}
+				break;
+			default:
+				{
+					return message.channel.send("Invalid command! For a list of valid commands try !help ");
+				}
+				break;
+
+		}
+
+	} catch (error) {
+		message.channel.send('BobBot has encountered an error : ' + error);
+	}
+
 });
 
 client.login('Njg3MTIwMDU0MTg5MjkzNTkx.Xm2wJw.Tr7tEuk_6V6feNwWDTEOYfVJIJ0');
