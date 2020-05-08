@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node bot.js"
   },
+  "main": "node bot.js",
   "author": "Smilingbob72",
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
