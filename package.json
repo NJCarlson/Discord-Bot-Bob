@@ -2,7 +2,7 @@
   "name": "bob-bot",
   "version": "1.0.0",
   "description": "Like J.A.R.V.I.S but for Smilingbob72 instead of Tony Stark. . . And in discord, instead of a flying metal battle suit.",
-  "main": "bot.js",
+  "main": "node bot.js",
   "author": "Smilingbob72",
   "scripts": {
     "start": "node bot.js"
