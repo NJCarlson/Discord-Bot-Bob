@@ -17,6 +17,8 @@ Various commands include :
 
 !spam [message] - BobBot sends the message 5 times, can only send the !insult message, requires permission.
 
+Note, may need to obtain a new bot token from Discord, since the one in this repo was changed when uploaded. 
+
 TO RUN : 
 OPEN COMMAND PROMPT 
 ENTER: 
