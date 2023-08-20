@@ -1,3 +1,6 @@
+Bob the discord bot is outdated, as Discord APIs have changed, and heroku ended their free subscription level. 
+
+
 # BobBot
 Discord bot project, made to learn Node / discord.js and Heroku
 
